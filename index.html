@@ -1390,30 +1390,33 @@
         </div>
 
         <div class="booking-container">
-            <form class="booking-form fade-up" id="bookingForm" onsubmit="handleSubmit(event)">
+            <form class="booking-form fade-up" id="bookingForm"
+                      action="https://docs.google.com/forms/d/e/1FAIpQLSdfMR0Xh7-BbdRKFLOXZSY5F7MgVZuqzorUZ7pp5qgmap2F2w/formResponse"
+                      method="POST" target="hidden_iframe" onsubmit="handleSubmit()">
                 <div class="form-row">
                     <div class="form-group">
                         <label data-lang="pl">Imię i nazwisko *</label>
                         <label data-lang="en">Full name *</label>
-                        <input type="text" name="name" required>
+                        <input type="text" name="entry.246097949" required>
                     </div>
                     <div class="form-group">
                         <label>Email *</label>
-                        <input type="email" name="email" required>
+                        <input type="email" name="entry.1996041725" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label data-lang="pl">Telefon *</label>
                         <label data-lang="en">Phone *</label>
-                        <input type="tel" name="phone" required>
+                        <input type="tel" name="entry.1761363316" required>
                     </div>
                     <div class="form-group">
                         <label data-lang="pl">Liczba gości *</label>
                         <label data-lang="en">Number of guests *</label>
-                        <select name="guests" required>
+                        <select name="entry.1680903899" required>
                             <option value="" data-lang="pl">Wybierz...</option>
                             <option value="" data-lang="en">Select...</option>
+                            <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
@@ -1426,19 +1429,19 @@
                     <div class="form-group">
                         <label data-lang="pl">Przyjazd *</label>
                         <label data-lang="en">Check-in *</label>
-                        <input type="date" name="checkin" id="checkin" required>
+                        <input type="date" name="entry.1045323642" id="checkin" required>
                     </div>
                     <div class="form-group">
                         <label data-lang="pl">Wyjazd *</label>
                         <label data-lang="en">Check-out *</label>
-                        <input type="date" name="checkout" id="checkout" required>
+                        <input type="date" name="entry.955691935" id="checkout" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group full">
                         <label data-lang="pl">Wiadomość</label>
                         <label data-lang="en">Message</label>
-                        <textarea name="message" data-lang-placeholder-pl="Dodatkowe pytania, specjalne życzenia..." data-lang-placeholder-en="Additional questions, special requests..."></textarea>
+                        <textarea name="entry.1017029246" data-lang-placeholder-pl="Dodatkowe pytania, specjalne życzenia..." data-lang-placeholder-en="Additional questions, special requests..."></textarea>
                     </div>
                 </div>
                 <button type="submit" class="submit-btn">
@@ -1447,7 +1450,14 @@
                 </button>
                 <p class="form-note" data-lang="pl">Odpowiadamy zazwyczaj w ciągu 24 godzin</p>
                 <p class="form-note" data-lang="en">We usually respond within 24 hours</p>
+                <div id="form-success" style="display:none; text-align:center; padding:2rem; background:var(--forest); color:var(--cream); border-radius:8px; margin-top:1.5rem;">
+                    <p style="font-size:1.25rem; margin-bottom:0.5rem;" data-lang="pl">Dziękujemy!</p>
+                    <p style="font-size:1.25rem; margin-bottom:0.5rem;" data-lang="en">Thank you!</p>
+                    <p data-lang="pl">Otrzymaliśmy Twoje zapytanie. Odpowiemy najszybciej jak to możliwe.</p>
+                    <p data-lang="en">We received your inquiry. We'll get back to you as soon as possible.</p>
+                </div>
             </form>
+            <iframe name="hidden_iframe" style="display:none;"></iframe>
         </div>
     </section>
 
@@ -1624,10 +1634,12 @@
             });
         });
 
-        // Form handling - redirect to Google Form
-        function handleSubmit(e) {
-            e.preventDefault();
-            window.open('https://forms.gle/onQ3WYQkpey4CmqN8', '_blank');
+        // Form handling - submit to Google Forms and show success
+        function handleSubmit() {
+            setTimeout(function() {
+                document.getElementById('bookingForm').style.display = 'none';
+                document.getElementById('form-success').style.display = 'block';
+            }, 500);
         }
 
         // Set min dates
