@@ -1624,14 +1624,10 @@
             });
         });
 
-        // Form handling
+        // Form handling - redirect to Google Form
         function handleSubmit(e) {
             e.preventDefault();
-            const isPolish = document.documentElement.lang === 'pl';
-            const msg = isPolish 
-                ? 'Dziękujemy za zapytanie! Odpowiemy najszybciej jak to możliwe.' 
-                : 'Thank you for your inquiry! We will respond as soon as possible.';
-            alert(msg);
+            window.open('https://forms.gle/onQ3WYQkpey4CmqN8', '_blank');
         }
 
         // Set min dates
