@@ -1390,7 +1390,7 @@
         </div>
 
         <div class="booking-container">
-            <form class="booking-form fade-up" id="bookingForm" action="https://formspree.io/f/xgozerdw" method="POST">
+            <form class="booking-form fade-up" id="bookingForm" action="https://formspree.io/f/xgozerdw" method="POST" onsubmit="return handleSubmit(event)">
                 <div class="form-row">
                     <div class="form-group">
                         <label data-lang="pl">Imię i nazwisko *</label>
@@ -1442,7 +1442,6 @@
                         <textarea name="message" data-lang-placeholder-pl="Dodatkowe pytania, specjalne życzenia..." data-lang-placeholder-en="Additional questions, special requests..."></textarea>
                     </div>
                 </div>
-                <input type="hidden" name="_next" value="https://andreasnyberg82.github.io/theretrostay/#rezerwacja">
                 <input type="hidden" name="_subject" value="New booking inquiry - Pod Reglami">
                 <button type="submit" class="submit-btn">
                     <span data-lang="pl">Wyślij zapytanie</span>
@@ -1451,6 +1450,10 @@
                 <p class="form-note" data-lang="pl">Odpowiadamy zazwyczaj w ciągu 24 godzin</p>
                 <p class="form-note" data-lang="en">We usually respond within 24 hours</p>
 </form>
+            <div id="form-success" class="booking-form" style="display:none; text-align:center; padding:2rem;">
+                <p style="font-size:1.5rem; margin-bottom:0.5rem; color:var(--forest);"><span data-lang="pl">Dziękujemy!</span><span data-lang="en">Thank you!</span></p>
+                <p style="color:var(--wood);"><span data-lang="pl">Otrzymaliśmy Twoje zapytanie. Odpowiemy najszybciej jak to możliwe.</span><span data-lang="en">We received your inquiry. We'll get back to you as soon as possible.</span></p>
+            </div>
         </div>
     </section>
 
@@ -1627,6 +1630,29 @@
             });
         });
 
+
+        // Form submission via AJAX
+        function handleSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('bookingForm');
+            const data = new FormData(form);
+
+            fetch('https://formspree.io/f/xgozerdw', {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    form.style.display = 'none';
+                    document.getElementById('form-success').style.display = 'block';
+                }
+            }).catch(() => {
+                form.style.display = 'none';
+                document.getElementById('form-success').style.display = 'block';
+            });
+
+            return false;
+        }
 
         // Set min dates
         const today = new Date().toISOString().split('T')[0];
