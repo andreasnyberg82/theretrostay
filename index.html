@@ -1390,28 +1390,28 @@
         </div>
 
         <div class="booking-container">
-            <form class="booking-form fade-up" id="bookingForm" onsubmit="handleSubmit(event)">
+            <form class="booking-form fade-up" id="bookingForm" action="https://formspree.io/f/xgozerdw" method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label data-lang="pl">Imię i nazwisko *</label>
                         <label data-lang="en">Full name *</label>
-                        <input type="text" id="f-name" required>
+                        <input type="text" name="name" required>
                     </div>
                     <div class="form-group">
                         <label>Email *</label>
-                        <input type="email" id="f-email" required>
+                        <input type="email" name="email" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label data-lang="pl">Telefon *</label>
                         <label data-lang="en">Phone *</label>
-                        <input type="tel" id="f-phone" required>
+                        <input type="tel" name="phone" required>
                     </div>
                     <div class="form-group">
                         <label data-lang="pl">Liczba gości *</label>
                         <label data-lang="en">Number of guests *</label>
-                        <select id="f-guests" required>
+                        <select name="guests" required>
                             <option value="" data-lang="pl">Wybierz...</option>
                             <option value="" data-lang="en">Select...</option>
                             <option value="1">1</option>
@@ -1427,21 +1427,23 @@
                     <div class="form-group">
                         <label data-lang="pl">Przyjazd *</label>
                         <label data-lang="en">Check-in *</label>
-                        <input type="date" id="checkin" required>
+                        <input type="date" name="checkin" id="checkin" required>
                     </div>
                     <div class="form-group">
                         <label data-lang="pl">Wyjazd *</label>
                         <label data-lang="en">Check-out *</label>
-                        <input type="date" id="checkout" required>
+                        <input type="date" name="checkout" id="checkout" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group full">
                         <label data-lang="pl">Wiadomość</label>
                         <label data-lang="en">Message</label>
-                        <textarea id="f-message" data-lang-placeholder-pl="Dodatkowe pytania, specjalne życzenia..." data-lang-placeholder-en="Additional questions, special requests..."></textarea>
+                        <textarea name="message" data-lang-placeholder-pl="Dodatkowe pytania, specjalne życzenia..." data-lang-placeholder-en="Additional questions, special requests..."></textarea>
                     </div>
                 </div>
+                <input type="hidden" name="_next" value="https://andreasnyberg82.github.io/theretrostay/#rezerwacja">
+                <input type="hidden" name="_subject" value="New booking inquiry - Pod Reglami">
                 <button type="submit" class="submit-btn">
                     <span data-lang="pl">Wyślij zapytanie</span>
                     <span data-lang="en">Send inquiry</span>
@@ -1449,11 +1451,6 @@
                 <p class="form-note" data-lang="pl">Odpowiadamy zazwyczaj w ciągu 24 godzin</p>
                 <p class="form-note" data-lang="en">We usually respond within 24 hours</p>
 </form>
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-            <div id="form-success" class="booking-form" style="display:none; text-align:center; padding:2rem;">
-                <p style="font-size:1.5rem; margin-bottom:0.5rem; color:var(--forest);"><span data-lang="pl">Prawie gotowe!</span><span data-lang="en">Almost done!</span></p>
-                <p style="color:var(--wood);"><span data-lang="pl">Kliknij "Prześlij" w nowym oknie, aby potwierdzić rezerwację.</span><span data-lang="en">Click "Submit" in the new window to confirm your booking.</span></p>
-            </div>
         </div>
     </section>
 
@@ -1630,27 +1627,6 @@
             });
         });
 
-        // Form handling - open pre-filled Google Form
-        function handleSubmit(e) {
-            e.preventDefault();
-
-            const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdfMR0Xh7-BbdRKFLOXZSY5F7MgVZuqzorUZ7pp5qgmap2F2w/viewform?usp=pp_url';
-
-            const params = new URLSearchParams({
-                'entry.1033768659': document.getElementById('f-name').value,
-                'entry.1825242820': document.getElementById('f-email').value,
-                'entry.2060614249': document.getElementById('f-phone').value,
-                'entry.1889793187': document.getElementById('f-guests').value,
-                'entry.257877252': document.getElementById('checkin').value,
-                'entry.1657966621': document.getElementById('checkout').value,
-                'entry.196029341': document.getElementById('f-message').value
-            });
-
-            window.open(baseUrl + '&' + params.toString(), '_blank');
-
-            document.getElementById('bookingForm').style.display = 'none';
-            document.getElementById('form-success').style.display = 'block';
-        }
 
         // Set min dates
         const today = new Date().toISOString().split('T')[0];
