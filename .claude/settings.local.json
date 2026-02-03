@@ -9,7 +9,9 @@
       "Bash(git push)",
       "WebFetch(domain:forms.gle)",
       "WebFetch(domain:docs.google.com)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Bash(git rebase:*)",
+      "Bash(GIT_EDITOR=true git rebase:*)"
     ]
   }
 }

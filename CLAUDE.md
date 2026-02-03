@@ -10,7 +10,7 @@ Static single-page website for "Pod Reglami" (meaning "Under the Foothills" in P
 
 - **Repository:** https://github.com/andreasnyberg82/theretrostay
 - **Live site:** https://andreasnyberg82.github.io/theretrostay/
-- **Hosting:** GitHub Pages (auto-deploys on push to main)
+- **Hosting:** GitHub Pages (auto-deploys on push to main, typically 1-2 minutes)
 
 ## Development
 
@@ -40,7 +40,7 @@ All code lives in `index.html`:
 
 **Gallery Lightbox**
 - Custom implementation with keyboard navigation (arrows, Escape)
-- 15 images in `images/` folder with descriptive names (01-cosy-room.jpeg through 15-living-beds.jpeg)
+- 20 images in `images/` folder organized by area
 
 **Interactive Map**
 - Leaflet.js with OpenStreetMap tiles
@@ -58,9 +58,16 @@ All code lives in `index.html`:
 - Scroll-triggered animations using Intersection Observer
 
 ### Images
-Located in `images/` folder:
-- 01-cosy-room.jpeg through 15-living-beds.jpeg
-- Original WhatsApp uploads also kept as backups
+Located in `images/` folder, organized by area:
+- `balcony-*.jpeg` - Terrace and outdoor views
+- `bathroom-*.jpeg` - Bathroom
+- `bedroom-floral-*.jpeg` - Main bedroom with floral wallpaper
+- `bedroom-pine-*.jpeg` - Bedroom with pine wall
+- `exterior-*.jpeg` - House exterior, garden, shed
+- `kitchen-*.jpeg` - Kitchen and dining
+- `living-room-*.jpeg` - Living room areas
+
+Old images archived in `images/archive/`
 
 ## Business Details (for content updates)
 - Pricing: 500 PLN/night, 2-night minimum
@@ -69,5 +76,14 @@ Located in `images/` folder:
 
 ## SEO & Social
 - Favicon: SVG star logo (inline data URI)
-- Open Graph image: `images/12-dining-xmas.jpeg`
+- Open Graph image: `images/balcony-view-summer.jpeg`
 - Meta description in Polish
+
+## Custom Agent
+
+A marketing strategist agent is available at `.claude/agents/mountain-rental-marketing-strategist.md` for help with:
+- Marketing strategies and guest acquisition
+- UK/European market targeting
+- OTA platform optimization (Airbnb, Booking.com)
+- Social media and content strategy
+- Competitor analysis in the Zakopane region
